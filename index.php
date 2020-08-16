@@ -1,6 +1,6 @@
 <?php
 /**
- * 这是由Dingzd修改的主题（基于seventeen）。修改了大部分的界面，添加短代码、公告、文章置顶、懒加载、查看大图等功能。如需文章添加缩略图，请在文章添加自定义字段 img ；文章添加星星记号，请在文章添加自定义字段 star ；其他功能请在主题中设置；
+ * Waxy 简约自适应博客主题，轻量高效，悦于书写！支持主题自定义、短代码、文章置顶/标星、公告等功能。<br/>详细说明请移步：<a href="https://github.com/dingzd1995/typecho-theme-waxy">https://github.com/dingzd1995/typecho-theme-waxy</a>
  * 
  * @package Waxy
  * @author Dingzd

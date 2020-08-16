@@ -18,37 +18,27 @@
     <script src="//cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.js"></script>
 	<script src="<?php $this->options->themeUrl('js/screen.js'); ?>"></script>
+	
+	<!--代码高亮-->
+	<?php if ($this->options->codeHighlightControl): ?>
+	<script type="text/javascript">
+	(function(){
+		var pres = document.querySelectorAll('pre');
+		var lineNumberClassName = 'line-numbers';
+		pres.forEach(function (item, index) {
+			item.className = item.className == '' ? lineNumberClassName : item.className + ' ' + lineNumberClassName;
+		});
+	})();
+    </script>
+	<script type="text/javascript" src="<?php $this->options->themeUrl('prism/prism.js'); ?>"></script>
+    <script type="text/javascript" src="<?php $this->options->themeUrl('prism/clipboard.min.js'); ?>"></script>
+    <?php endif; ?>
+    <!--END-->
+    
     <script type="text/javascript">
         $("#loading").fadeOut(500);
     </script>
-    <script>
-                window.content_index_showTocToggle = false;
-                function content_index_toggleToc() {
-                    var tts = "显示";
-                    var tth = "隐藏";
-                    if (window.content_index_showTocToggle) {
-                        window.content_index_showTocToggle = false;
-                        document.getElementById("toc-content").style.display = "none";
-                        document.getElementById("content-index-togglelink").innerHTML = tts
-                    } else {
-                        window.content_index_showTocToggle = true;
-                        document.getElementById("toc-content").style.display = "block";
-                        document.getElementById("content-index-togglelink").innerHTML = tth
-                    }
-                }
-                $(document).scroll(function(){
-                   if ($(window).scrollTop() > 350){
-                        $(".toc-index").css({
-                            position: "fixed",
-                            top: "10px",
-                            right:"25%",
-                            width:"230px",
-                        });
-                    }else{
-                        $(".toc-index").removeAttr("style")
-                    }
-                })
-            </script>
+
 <?php $this->footer(); ?>
 </body>
 </html>

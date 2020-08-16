@@ -133,19 +133,31 @@
 		);
 		$form->addInput($toptext);
 		
+		$codeHighlightControl = new Typecho_Widget_Helper_Form_Element_Radio(
+	        'codeHighlightControl',
+	        array(
+	            '1' => '开启',
+	            '0' => '关闭'
+	        ),
+	        '0',
+	        _t('代码高亮'),
+	        _t('是否启用代码高亮功能，如需使用其他同类型插件，请关闭此项防止冲突（默认关闭）')
+	    );
+		$form->addInput($codeHighlightControl);
+		
 		$codeHighlightTheme = new Typecho_Widget_Helper_Form_Element_Radio(
         'codeHighlightTheme',
         array(
-            'Default' => _t('Default'),
-            'Okaidia' => _t('Okaidia'),
-            'Coy' => _t('COY'),
-            'SolarizedLight' => _t('Solarized Light'),
-            'TomorrowNight' => _t('Tomorrow Night'),
-			'Twilight' => _t('Twilight'),
-			'Funky' => _t('Funky'),
-			'Dark' => _t('Dark'),
+            'Default.css' => _t('Default'),
+            'Okaidia.css' => _t('Okaidia'),
+            'Coy.css' => _t('COY'),
+            'SolarizedLight.css' => _t('Solarized Light'),
+            'TomorrowNight.css' => _t('Tomorrow Night'),
+			'Twilight.css' => _t('Twilight'),
+			'Funky.css' => _t('Funky'),
+			'Dark.css' => _t('Dark'),
             ),
-            'Okaidia',
+            'Okaidia.css',
             _t('代码高亮'),
             _t('代码高亮')
         );
