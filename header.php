@@ -75,10 +75,9 @@
     <!-- Loading END -->
     <!-- 使用url函数转换相关路径 -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!--link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"-->
     <link rel="stylesheet" href="//cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('css/screen.css'); ?>">
-	<link rel="shortcut icon" href="<?php $this->options->siteUrl(); ?>favicon.ico">
+	<link rel="shortcut icon" href="<?php $this->options->faviconUrl(); ?>">
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
 </head>
@@ -90,7 +89,11 @@
                 <div class="col-sm-12">
         			<div class="container">
         				<div class="menu menu-logo">
-							<a class="navbar-brand menu-title" href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->description() ?>" ><img src="/logo.png" height="45" style="margin: -15px -15px 35px 0px;" alt="<?php $this->options->title() ?>"></a>
+							<a class="navbar-brand menu-title" href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->description() ?>" >
+							    <?php if (!empty($this->options->logoUrl)){ ?>
+							    <img src="/logo.png" height="45" style="margin: -15px -15px 35px 0px;" alt="<?php $this->options->title(); ?>">
+							    <?php }else{$this->options->title();} ?>
+							</a>
 					    </div>
 					    
 						<div class="navbar-header">

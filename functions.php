@@ -5,6 +5,33 @@
 	
 	// 主题设置
 	function themeConfig($form) {
+		$logoUrl = new Typecho_Widget_Helper_Form_Element_Text(
+    	    'logoUrl', 
+    	    NULL, 
+    	    NULL, 
+    	    _t('站点LOGO地址'),
+    	    _t('在这里填入一个图片URL地址, 用来显示网站图片LOGO，为空则显示网站标题')
+    	    );
+        $form->addInput($logoUrl);
+		
+		$faviconUrl = new Typecho_Widget_Helper_Form_Element_Text(
+		    'faviconUrl', 
+		    NULL, 
+		    NULL, 
+		    _t('Favicon'), 
+		    _t('请填入完整链接，作为网站标签页图标，建议大小 114x114')
+		);
+		$form->addInput($faviconUrl);
+		
+		$startTime = new Typecho_Widget_Helper_Form_Element_Text(
+			'startTime', 
+			NULL, 
+			NULL, 
+			_t('建站日期'), 
+			_t('格式：2019-11-23 13:55:00')
+			);
+		$form->addInput($startTime);
+		
 		$shortcode = new Typecho_Widget_Helper_Form_Element_Radio(
 	        'shortcode',
 	        array(
@@ -15,26 +42,8 @@
 	        _t('短代码支持'),
 	        _t('是否启用短代码支持，移植的 WordPress 功能')
 	    );
-	    $fancyboxs = new Typecho_Widget_Helper_Form_Element_Radio(
-	        'fancyboxs',
-	        array(
-	            '1' => '开启',
-	            '0' => '关闭'
-	        ),
-	        '1',
-	        _t('图片灯箱效果'),
-	        _t('是否启用fancybox的图片灯箱效果')
-	    );
-		$JQlazyload = new Typecho_Widget_Helper_Form_Element_Radio(
-	        'JQlazyload',
-	        array(
-	            '1' => '开启',
-	            '0' => '关闭'
-	        ),
-	        '1',
-	        _t('图片懒加载'),
-	        _t('是否启用图片懒加载（lazyload）')
-	    );
+		$form->addInput($shortcode);
+		
 	    $picHtmlPrint = new Typecho_Widget_Helper_Form_Element_Radio(
 	        'picHtmlPrint',
 	        array(
@@ -45,35 +54,116 @@
 	        _t('图片高级功能'),
 	        _t('居中、懒加载、灯箱总控制开关')
 	    );
+		$form->addInput($picHtmlPrint);
+				
+	    $fancyboxs = new Typecho_Widget_Helper_Form_Element_Radio(
+	        'fancyboxs',
+	        array(
+	            '1' => '开启',
+	            '0' => '关闭'
+	        ),
+	        '1',
+	        _t('图片灯箱效果'),
+	        _t('是否启用fancybox的图片灯箱效果')
+	    );
+		$form->addInput($fancyboxs);
+		
+		$JQlazyload = new Typecho_Widget_Helper_Form_Element_Radio(
+	        'JQlazyload',
+	        array(
+	            '1' => '开启',
+	            '0' => '关闭'
+	        ),
+	        '1',
+	        _t('图片懒加载'),
+	        _t('是否启用图片懒加载（lazyload）')
+	    );
+		$form->addInput($JQlazyload);
+		
+		$JQlazyload_gif = new Typecho_Widget_Helper_Form_Element_Text(
+	        'JQlazyload_gif', 
+	        NULL,
+	        '/usr/themes/waxy/img/loading.gif',
+	        _t('懒加载loading图片'),
+	        _t('设置图片懒加载时的载入图片（gif格式）')
+		);
+		$form->addInput($JQlazyload_gif);
+		
+		$sidebarBlock = new Typecho_Widget_Helper_Form_Element_Checkbox(
+		'sidebarBlock', 
+		array(
+		    'ShowSearch' => _t('显示搜索'),
+		    'ShowCategory' => _t('显示分类'),
+		    'ShowTags' => _t('显示标签云'),
+		    'ShowRecentPosts' => _t('显示最新文章'),
+		    'ShowRecentComments' => _t('显示最近回复'),
+            'ShowArchive' => _t('显示归档'),
+            'ShowWX' => _t('显示微信公众号'),
+            'ShowLinks' => _t('显示友情链接'),
+            'ShowOther' => _t('显示其它杂项')
+            ),
+        array(
+            'ShowSearch',
+		    'ShowTags',
+		    'ShowRecentPosts',
+		    'ShowRecentComments',
+            'ShowLinks'
+            ),
+            _t('侧边栏显示')
+        );
+    
+        $form->addInput($sidebarBlock->multiMode());
+		
+		
 	    $sticky = new Typecho_Widget_Helper_Form_Element_Text(
 	        'sticky', 
 	        NULL,
 	        NULL,
 	        _t('文章置顶'),
 	        _t('置顶的文章cid，多个请用逗号或空格分隔，为保证效果仅置顶第一个')
-	   );
-	   $toptext = new Typecho_Widget_Helper_Form_Element_Text(
+		);
+		$form->addInput($sticky);
+	   
+		$toptext = new Typecho_Widget_Helper_Form_Element_Text(
 	        'toptext', 
 	        NULL,
 	        NULL,
 	        _t('置顶公告'),
 	        _t('置顶公告，留空则关闭')
-	   );
-		$form->addInput($shortcode);
-		$form->addInput($picHtmlPrint);
-		$form->addInput($fancyboxs);
-		$form->addInput($JQlazyload);
-		$form->addInput($sticky);
+		);
 		$form->addInput($toptext);
-    	/*$logoUrl = new Typecho_Widget_Helper_Form_Element_Text(
-    	    'logoUrl', 
-    	    NULL, 
-    	    NULL, 
-    	    _t('站点LOGO地址'),
-    	    _t('在这里填入一个图片URL地址, 以在网站标题前加上一个LOGO')
-    	    );
-        $layout->addItem($logoUrl);*/
 		
+		$codeHighlightTheme = new Typecho_Widget_Helper_Form_Element_Radio(
+        'codeHighlightTheme',
+        array(
+            'Default' => _t('Default'),
+            'Okaidia' => _t('Okaidia'),
+            'Coy' => _t('COY'),
+            'SolarizedLight' => _t('Solarized Light'),
+            'TomorrowNight' => _t('Tomorrow Night'),
+			'Twilight' => _t('Twilight'),
+			'Funky' => _t('Funky'),
+			'Dark' => _t('Dark'),
+            ),
+            'Okaidia',
+            _t('代码高亮'),
+            _t('代码高亮')
+        );
+        $form->addInput($codeHighlightTheme);
+    
+    	
+    	$CDN = new Typecho_Widget_Helper_Form_Element_Radio(
+            'CDN',
+            array(
+                'local' => _t('local'),
+                'bootcss' => _t('Bootcss'),
+            ),
+           'bootcss',
+            _t('CDN 设置（待更新）'),
+            _t('CDN 设置')
+        );
+        $form->addInput($CDN);
+	
 	}
 	
 	// 主题加载
@@ -90,13 +180,10 @@
 	    // 短代码
 	    if ($options->shortcode) {
 	    	$content = do_shortcode($content);
-	    }
-	    
-	    
+	    }  
 	    if ($options->picHtmlPrint) {
 	    	$content = getPicHtml($content);
 	    }
-	    
 	    
 	    return $content;
 	    
@@ -141,15 +228,16 @@
 	    $replacement = '<center><img src="$1" alt="$2" title="$3"><span class="imgtitle">$3<span></center>';
 	    // 懒加载
 	    if ($options->JQlazyload) {
-	    	$replacement = '<center><img class="lazyload" src="/loading.gif" data-original="$1" alt="$2" title="$3"><span class="imgtitle">$3<span></center>';
+	    	$replacement = '<center><img class="lazyload" src="'.$options->JQlazyload_gif.'" data-original="$1" alt="$2" title="$3"><span class="imgtitle">$3<span></center>';
 	    }
 	    // 灯箱效果
 	    if ($options->fancyboxs) {
 	    	$replacement = '<center><a data-fancybox="gallery" href="$1"><img  src="$1" alt="$2" title="$3"></a><span class="imgtitle">$3<span></center>';
 	    }
 	    
+	    //all in
 	    if($options->fancyboxs&&$options->JQlazyload){
-	    	$replacement = '<center><a data-fancybox="gallery" href="$1"><img class="lazyload" src="/loading.gif" data-original="$1" alt="$2" title="$3"></a><span class="imgtitle">$3<span></center>';
+	    	$replacement = '<center><a data-fancybox="gallery" href="$1"><img class="lazyload" src="'.$options->JQlazyload_gif.'" data-original="$1" alt="$2" title="$3"></a><span class="imgtitle">$3<span></center>';
 	    }
 	    $content = preg_replace($pattern, $replacement, $content);
 	    
@@ -232,7 +320,12 @@
 	 */
 	function getBuildTime(){
 		// 在下面按格式输入本站创建的时间
-		$site_create_time = strtotime('2019-11-23 13:55:00');
+		$options = Typecho_Widget::widget('Widget_Options');
+        $start_Time = $options->startTime;
+        $site_create_time = strtotime('2019-11-23 13:55:00');
+        if(!empty($start_Time)){
+            $site_create_time = strtotime($start_Time);
+        }
 		$time = time() - $site_create_time;
 		if(is_numeric($time)){
 			$value = array(
@@ -315,10 +408,11 @@
         }
         echo $sticky_html;
     }
+    
     /**
     * 公告
     */
-    function on_top_text($this){
+    function on_top_text($archive){
         $options = Typecho_Widget::widget('Widget_Options');
         $top_text = $options->toptext;
         $top_text_html = '';

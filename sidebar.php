@@ -1,10 +1,8 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<aside class="col-md-4 sidebar">
 
-               <aside class="col-md-4 sidebar">
-                <!-- start widget -->
-<!-- end widget --> 
-
-<!-- start tag cloud widget -->
+<!-- start Search widget -->
+<?php if (!empty($this->options->sidebarBlock) && in_array('ShowSearch', $this->options->sidebarBlock)): ?>
 <div class="widget">
   <h4 class="title">搜索</h4>
   <div class="content community"  style="position: relative;">
@@ -15,9 +13,24 @@
     </form>
   </div>
 </div>
-<!-- end tag cloud widget --> 
+<?php endif; ?>
+<!-- end Search widget --> 
 
-<!-- start tag cloud widget -->
+<!-- start Category widget -->
+<?php if (!empty($this->options->sidebarBlock) && in_array('ShowCategory', $this->options->sidebarBlock)): ?>
+<div class="widget">
+  <h4 class="title">分类</h4>
+  <div class="category">
+  <?php $this->widget('Widget_Metas_Category_List')->listCategories('wrapClass=widget-list'); ?>
+  </div>
+</div>
+<?php endif; ?>
+<!-- end Category widget --> 
+
+
+
+<!-- start Tags widget -->
+<?php if (!empty($this->options->sidebarBlock) && in_array('ShowTags', $this->options->sidebarBlock)): ?>
 <div class="widget">
   <h4 class="title">标签云</h4>
   <div class="content tag-cloud">
@@ -27,9 +40,11 @@
 <?php endwhile; ?>
   </div>
 </div>
-<!-- end tag cloud widget --> 
+<?php endif; ?>
+<!-- end Tags widget --> 
 
-<!-- start widget -->
+<!-- start RecentPosts widget -->
+<?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentPosts', $this->options->sidebarBlock)): ?>
 <div class="widget">
   <h4 class="title">最新文章</h4>
   <div class="content recent-post">
@@ -44,10 +59,11 @@
 		<?php endwhile; ?>
     </div>
 </div>
+<?php endif; ?>
+<!-- end RecentPosts widget --> 
 
-<!-- end widget --> 
-
-<!-- start widget -->
+<!-- start RecentComments widget -->
+<?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentComments', $this->options->sidebarBlock)): ?>
 <div class="widget">
 	<h4 class="title">最新评论</h4>
 	<div class="content recent-post">
@@ -61,11 +77,32 @@
     <?php endwhile; ?>
     </div>
 </div>
+<?php endif; ?>
+<!-- end RecentComments widget -->  
 
-<!-- end widget -->  
+
+<!-- start Archive widget -->
+<?php if (!empty($this->options->sidebarBlock) && in_array('ShowArchive', $this->options->sidebarBlock)): ?>
+<div class="widget">
+	<h4 class="title">归档列表</h4>
+	<div class="category">
+		<ul class="widget-list">
+		<?php $this->widget('Widget_Contents_Post_Date', 'type=month&format=Y年 m月')->to($parses); ?>
+        <?php while ($parses->next()): ?>
+		<li class="category-level-0 category-parent">
+			<a href="<?php $parses->permalink() ?>"><?php $parses->date('Y年m月') ?> （共<?php $parses->count() ?>篇）</a>
+		</li>
+    	<?php endwhile; ?>
+    	</ul> 
+    </div>
+</div>
+<?php endif; ?>
+<!-- end Archive widget --> 
 
 
-<!-- start widget -->
+
+<!-- start WX widget -->
+<?php if (!empty($this->options->sidebarBlock) && in_array('ShowWX', $this->options->sidebarBlock)): ?>
 <div class="widget">
 	<h4 class="title">微信关注</h4>
 	<div class="content recent-post">
@@ -74,17 +111,40 @@
     	</div> 
     </div>
 </div>
+<?php endif; ?>
+<!-- end WX widget --> 
 
-<!-- end widget --> 
 
-
-<!-- start widget -->
+<!-- start Links widget -->
+<?php if (!empty($this->options->sidebarBlock) && in_array('ShowLinks', $this->options->sidebarBlock)): ?>
 <div class="widget">
 	<h4 class="title">友情链接</h4>
 	<div class="content recent-post">
         	<?php Links_Plugin::output("SHOW_MIX"); ?>
     </div>
 </div>
+<?php endif; ?>
+<!-- end Links widget --> 
 
-<!-- end widget --> 
+<?php if (!empty($this->options->sidebarBlock) && in_array('ShowOther', $this->options->sidebarBlock)): ?>
+<div class="widget">
+	<h4 class="title">其他</h4>
+	<div class="category">
+		<ul class="widget-list">
+		<?php if($this->user->hasLogin()): ?>
+			<li class="category-level-0 category-parent">
+			    <a href="<?php $this->options->adminUrl(); ?>"><?php _e('进入后台'); ?> (<?php $this->user->screenName(); ?>)</a>
+			    <a href="<?php $this->options->logoutUrl(); ?>"><?php _e('退出'); ?>
+			</li>
+        <?php else: ?>
+            <li class="category-level-0 category-parent"><a href="<?php $this->options->adminUrl('login.php'); ?>"><?php _e('登录'); ?></a></li>
+        <?php endif; ?>
+        <li class="category-level-0 category-parent"><a href="<?php $this->options->feedUrl(); ?>"><?php _e('文章 RSS'); ?></a></li>
+        <li class="category-level-0 category-parent"><a href="<?php $this->options->commentsFeedUrl(); ?>"><?php _e('评论 RSS'); ?></a></li>
+        <li class="category-level-0 category-parent">本站已稳定运行：<?php echo getBuildTime();?></li>
+    	</ul> 
+    </div>
+</div>
+<?php endif; ?>
+
 </aside>
