@@ -10,7 +10,7 @@ Waxy 简约自适应博客主题，轻量高效，悦于书写！支持主题自
 
 ## 安装主题
 
-[主题下载地址](https://github.com/dingzd1995/typecho-theme-waxy/releases/tag/v2020.06.15)
+[主题下载地址](https://github.com/dingzd1995/typecho-theme-waxy/releases/tag/v2020.06.16)
 
 把主题上传到 Typecho 安装路径下的 `usr/themes/` 目录，然后解压，你也可以先解压在上传。
 
