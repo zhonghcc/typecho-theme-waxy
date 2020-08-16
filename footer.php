@@ -3,8 +3,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <span> Copyright &copy; 2019-2020 <a href="<?php $this->options->siteUrl(); ?>" target="_blank">IDZD</a></span><br />
-                    <span>Powered by <a rel="noopener" href="https://typecho.org/" target="_blank">Typecho</a> | <a rel="nofollow noopener noreferrer" href="http://www.beian.miit.gov.cn" target="_blank">冀ICP备19023933号-1</a></span><br />
+                    <span> Copyright &copy; <?php echo date("Y"); ?> <a href="<?php $this->options->siteUrl(); ?>" target="_blank"><?php $this->options->title(); ?></a></span><br />
+                    <span>Powered by <a rel="noopener" href="https://typecho.org/" target="_blank">Typecho</a> | Theme by <a rel="noopener" href="https://github.com/dingzd1995/typecho-theme-waxy" target="_blank">Waxy</a></span><br />
                 </div>
             </div>
         </div>
