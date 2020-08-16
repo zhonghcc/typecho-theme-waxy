@@ -73,13 +73,35 @@
         </div>
     </div>
     <!-- Loading END -->
-    <!-- 使用url函数转换相关路径 -->
+    
+    <!--bootcss-->
+    <?php if (strcmp($this->options->CDN,"bootcss")==0): ?>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+    <?php endif; ?>
+    <!--bootcss END-->
+    
+    <!--jsdelivr-->
+    <?php if (strcmp($this->options->CDN,"jsdelivr")==0): ?>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+    <?php endif; ?>
+    <!--jsdelivr END-->
+    
+    <!--local-->
+    <?php if (strcmp($this->options->CDN,"local")==0): ?>
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/jquery.fancybox.min.css'); ?>">
+    <?php endif; ?>
+    <!--local END-->
+    
+    
+    <!-- 使用url函数转换相关路径 -->
     <link rel="stylesheet" href="<?php $this->options->themeUrl('css/screen.css'); ?>">
+    
     <!--代码高亮-->
 	<?php if ($this->options->codeHighlightControl): ?>
-	<link rel="stylesheet" type="text/css" href="<?php $this->options->themeUrl('prism/css/'); ?><?php $this->options->codeHighlightTheme(''); ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php $this->options->themeUrl('prism/css/'); ?><?php $this->options->codeHighlightTheme(); ?>" />
     <?php endif; ?>
     <!--END-->
 	<link rel="shortcut icon" href="<?php $this->options->faviconUrl(); ?>">

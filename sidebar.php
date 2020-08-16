@@ -107,7 +107,7 @@
 	<h4 class="title">微信关注</h4>
 	<div class="content recent-post">
         <div class="recent-single-post" align="center">
-            <img src="https://pic.idzd.top/icon/wx.png" title="欢迎关注公众号" alt="欢迎关注公众号" />
+            <img src="<?php $this->options->weixin_img(); ?>" title="欢迎关注公众号" alt="欢迎关注公众号" />
     	</div> 
     </div>
 </div>

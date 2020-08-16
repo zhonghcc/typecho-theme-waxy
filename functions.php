@@ -111,8 +111,16 @@
             ),
             _t('侧边栏显示')
         );
-    
         $form->addInput($sidebarBlock->multiMode());
+        
+        $weixin_img = new Typecho_Widget_Helper_Form_Element_Text(
+	        'weixin_img', 
+	        NULL,
+	        '/usr/themes/waxy/img/loading.gif',
+	        _t('微信二维码'),
+	        _t('设置侧边栏微信公众号二维码图片，建议200x200')
+		);
+		$form->addInput($weixin_img);
 		
 		
 	    $sticky = new Typecho_Widget_Helper_Form_Element_Text(
@@ -150,7 +158,7 @@
         array(
             'Default.css' => _t('Default'),
             'Okaidia.css' => _t('Okaidia'),
-            'Coy.css' => _t('COY'),
+            'Coy.css' => _t('Coy'),
             'SolarizedLight.css' => _t('Solarized Light'),
             'TomorrowNight.css' => _t('Tomorrow Night'),
 			'Twilight.css' => _t('Twilight'),
@@ -167,11 +175,12 @@
     	$CDN = new Typecho_Widget_Helper_Form_Element_Radio(
             'CDN',
             array(
-                'local' => _t('local'),
+                'local' => _t('本地'),
                 'bootcss' => _t('Bootcss'),
+                'jsdelivr' => _t('jsDelivr'),
             ),
            'bootcss',
-            _t('CDN 设置（待更新）'),
+            _t('CDN 设置'),
             _t('CDN 设置')
         );
         $form->addInput($CDN);
