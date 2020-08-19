@@ -97,7 +97,7 @@
     
     
     <!-- 使用url函数转换相关路径 -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/screen.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/waxy-main.css'); ?>">
     
     <!--代码高亮-->
 	<?php if ($this->options->codeHighlightControl): ?>

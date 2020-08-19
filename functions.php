@@ -421,9 +421,11 @@
                                        
         //foreach($sticky_post as $i => $cid) {}
                                        
-        $sticky_html = $sticky_html . '<div style="margin-right: 30px;"><span style="font-weight: bold;">置顶：</span><span><a href="https://www.idzd.top/archives/' . $sticky_cids[0] . '/">《'
-                                      . $sticky_post["title"] . 
-                                      '》</a></span><span style="color: #959595;">（'.$time.'）</span><div>';
+        $sticky_html = $sticky_html . '<div style="margin-right: 30px;"><span style="font-weight: bold;">置顶：</span><span><a href="' 
+									.$options->siteUrl. 'archives/'
+									. $sticky_cids[0] . '/">《'
+                                    . $sticky_post["title"] . 
+                                    '》</a></span><span style="color: #959595;">（'.$time.'）</span><div>';
         $sticky_html = $sticky_html . '</article>'; 
         
         }
