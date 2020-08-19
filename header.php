@@ -136,9 +136,9 @@
 								
 								<?php $this->widget('Widget_Metas_Category_List')->to($category); ?>
 					            <?php while ($category->next()): ?>
-					              
+					               <?php if($category->levels==0): ?>
 					              <li <?php if($this->is('category', $category->slug)): ?> class="nav-current" <?php endif; ?>><a href="<?php $category->permalink(); ?>" title="<?php $category->name(); ?>"><?php $category->name(); ?></a></li>
-					                
+					                <?php endif; ?>
 					            <?php endwhile; ?>
 					            
 								<?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
